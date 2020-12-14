@@ -14,6 +14,7 @@ int DragonHealth = 50;
 int PlayerHealth = 10;
 
 string PlayerWeapon = "sword";
+string FleeMessage;
 
 
 int PlayerMana = 10;
@@ -61,7 +62,11 @@ bool PlayGame() //Tells whether or not playing game
             int SwordDamage = rand() % 4 + 1;
             int FireballDamage = rand() % 5 + 2;
 
+            if (PlayerHealth <= 0)
+            {
+                cout << "You have died. Press A to exit the window.";
 
+            }
             cout << "Would you like to use your " << PlayerWeapon <<", magic or flee.\n";
             string PlayerGoblinResponse2;
             cin >> PlayerGoblinResponse2;
@@ -89,7 +94,10 @@ bool PlayGame() //Tells whether or not playing game
             {
                 cout << "You shoot your fireball at the goblin. You deal " << FireballDamage << " damage \n";
                 GoblinHealth = GoblinHealth - FireballDamage; //Determines the health of the goblin
+                PlayerMana -= 5;
                 cout << "The goblin has " << GoblinHealth << " health" << endl;
+                cout << endl;
+                cout << "You have " << PlayerMana << " mana.\n";
                 cout << endl;
                 if (GoblinHealth > 0)
                 {
@@ -97,11 +105,21 @@ bool PlayGame() //Tells whether or not playing game
                     PlayerHealth = PlayerHealth - GoblinDamage; //Determines the player health after combat
                     cout << endl;
                     cout << "You have " << PlayerHealth << " health.\n";
+                    cout << endl;
                 }
             }
             else if (PlayerGoblinResponse2 == "Flee" || PlayerGoblinResponse2 == "flee")
             {
-                
+                cout << "You coward. Why would you flee. Well, don't turn back now. You are a laughing stock to the goblin.\n";
+                cout << endl;
+                cout << "Please press A to close out of the window.\n";
+                cout << endl;
+                GoblinHealth = 0;
+                cin >> FleeMessage;
+                if (FleeMessage == "a" || FleeMessage == "A")
+                {
+                    GameComplete = true;
+                }
             }
 
         }
@@ -117,7 +135,12 @@ bool PlayGame() //Tells whether or not playing game
         cout << endl;
     }
 
-
+    cout << "Congratulation " << name << ".";
+    cout << endl;
+    cout << "You are just outside the City of Smog. You think you are in the safe, but you encounter a stray golem";
+    cout << endl;
+    cout << "You can try to avoid it or attack it.";
+    cout << endl;
 
 
 
